@@ -1,5 +1,5 @@
 import Express, { Application } from 'express';
-import mySqlConection  from "../database";
+import {mongoDB}  from "../database";
 import BaseRoutes from "../infra/baseRoutes";
 import cors from "cors";
 
@@ -18,11 +18,11 @@ export default class App {
 
     setup(options: SetupOption): void {
 
-        mySqlConection.hasConection();
+        mongoDB.createConnection();
         const selectedPort = options.port ? options.port : this.defaultPort;
         this.instance.use(Express.json());
         this.instance.use(cors());
-        this.instance.use(BaseRoutes)
+        this.instance.use(BaseRoutes);
 
         if(options.isTeste) return;
 

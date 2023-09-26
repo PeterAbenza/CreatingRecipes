@@ -1,10 +1,16 @@
 import { BodyHome } from "./styled"
 
+//Components
+import HeaderMenu from "../../Components/HeaderMenu"
+import MainMenu from "../../Components/NavBar"
+
+
 export default function Home() {
 
     return <BodyHome>
+        <HeaderMenu/>
         <main>
-            <h1>Hello Word!</h1>
+        <MainMenu/>
         </main>
     </BodyHome>
     

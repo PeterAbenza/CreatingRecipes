@@ -9,35 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const sequelize_1 = require("sequelize");
-class Conection {
-    constructor(DBNAME, DBUSER, DBPASS, DBCONFIG) {
-        try {
-            this.DB_NAME = DBNAME;
-            this.DB_USER = DBUSER;
-            this.DB_PASS = DBPASS;
-            this.DB_CONFIG = DBCONFIG;
-            this.instance = new sequelize_1.Sequelize(DBNAME, DBUSER, DBPASS, DBCONFIG);
-            console.log(`Banco-MYSQL: ${this.DB_NAME} conectado`);
-        }
-        catch (error) {
-            console.log(`Banco-MYSQL: Erro de conexão`, error);
-        }
+const mongoose_1 = require("mongoose");
+class MongoConnection {
+    constructor(db_connection_string) {
+        this.db_connection_string = db_connection_string;
     }
-    getInstance() {
-        return this.instance;
-    }
-    hasConection() {
+    createConnection() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                yield this.instance.authenticate();
-                console.log(`Banco-MYSQL: ${this.DB_NAME} funcionando!`);
+                yield (0, mongoose_1.connect)(this.db_connection_string);
+                console.log("Banco de dados NO-SQL conectado com sucesso!");
             }
             catch (error) {
-                console.log(`Banco-MYSQL: Erro de conexão`, error);
+                console.log("Não conseguimos conexão com o mongo DB!", error);
             }
         });
     }
 }
-exports.default = Conection;
-;
+exports.default = MongoConnection;

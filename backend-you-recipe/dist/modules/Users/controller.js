@@ -8,36 +8,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-const sequelize_1 = require("sequelize");
-class Conection {
-    constructor(DBNAME, DBUSER, DBPASS, DBCONFIG) {
-        try {
-            this.DB_NAME = DBNAME;
-            this.DB_USER = DBUSER;
-            this.DB_PASS = DBPASS;
-            this.DB_CONFIG = DBCONFIG;
-            this.instance = new sequelize_1.Sequelize(DBNAME, DBUSER, DBPASS, DBCONFIG);
-            console.log(`Banco-MYSQL: ${this.DB_NAME} conectado`);
-        }
-        catch (error) {
-            console.log(`Banco-MYSQL: Erro de conexão`, error);
-        }
-    }
-    getInstance() {
-        return this.instance;
-    }
-    hasConection() {
+const bcryptjs_1 = __importDefault(require("../../infra/providers/bcryptjs"));
+const Users_1 = __importDefault(require("../../models/Users"));
+const userControllers = {
+    create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            const { nome, email, password } = req.body;
+            const newSenha = bcryptjs_1.default.hashSync(password, 10);
             try {
-                yield this.instance.authenticate();
-                console.log(`Banco-MYSQL: ${this.DB_NAME} funcionando!`);
+                const newUser = yield Users_1.default.create({
+                    nome,
+                    email,
+                    password: newSenha,
+                });
+                return res.status(201).json(newUser);
             }
             catch (error) {
-                console.log(`Banco-MYSQL: Erro de conexão`, error);
+                return res.status(201).json(`Erro ao tentar criar registro: ${error}`);
             }
         });
     }
-}
-exports.default = Conection;
-;
+};
+exports.default = userControllers;
