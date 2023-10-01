@@ -8,7 +8,7 @@ import baseURL from "../../../baseRoute";
 
 
 
-export default function registro() {
+export default function Registro() {
 
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -66,7 +66,7 @@ export default function registro() {
             <p className="passError">{msgPassword}</p>
             <button type="submit" onClick={handleMsgError} disabled={!confirPassword || password.length < 5 || email == ""}>Registrar</button>
             </div>
-            <Link to="/" className="contacriada">Já possui conta?</Link>
+            <Link to="/login" className="contacriada">Já possui conta?</Link>
         </Bodyform>
         </MainCenter>
 }

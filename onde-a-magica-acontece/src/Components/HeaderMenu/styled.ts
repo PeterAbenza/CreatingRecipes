@@ -1,16 +1,19 @@
 import styled from "styled-components";
 
 export const HeaderStyled = styled.header `
+position: fixed;
 display: flex;
 padding: 1em;
 justify-content: center;
 max-width: 100%;
+width: 100%;
 height: 40px;
 border-bottom: 2px solid;
+background-color: #FFF;
 
 .menu {
-   display: flex;
-   gap: 20vh;
+display: flex;
+gap: 20vh;
 
     .navbar {
         display: flex;
@@ -49,6 +52,9 @@ border-bottom: 2px solid;
 }
 
 
-
+.logado {
+    text-decoration: none;
+    color: black;
+}
 
 `

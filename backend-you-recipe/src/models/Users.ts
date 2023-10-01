@@ -10,7 +10,7 @@ interface IUser {
 }
 
 const userSchema = new Schema<IUser>({
-    image: {type: String},
+    image: {type: String, default: "null"},
     id: {type: Number, require: true},
     nome: {type: String, require: true},
     email: {type: String, require: true},

@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const MainStyled = styled.main `
 position: absolute;
+position: fixed;
+margin-top: 100px;
+top: 0px;
 right: 0px;
 width: 18%;
 
-
-
 .conteudo {
     margin-right: 30px;
-
     .seguindo {
         display: flex;
         flex-direction: column;

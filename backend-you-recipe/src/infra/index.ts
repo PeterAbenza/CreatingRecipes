@@ -2,6 +2,7 @@ import Express, { Application } from 'express';
 import {mongoDB}  from "../database";
 import BaseRoutes from "../infra/baseRoutes";
 import cors from "cors";
+import Error from './middlewares/error';
 
 type SetupOption = {
     isTeste?: boolean;
